@@ -1,6 +1,10 @@
-function quickSort (array) {
-  if (array.length <= 1) return array;
-  
+function quickSort (array, left = 0, right = array.length - 1) {
+  if (left < right) {
+    let pivotIndex = pivot(array, left, right);
+    quickSort(array, left, pivotIndex - 1);
+    quickSort(array, pivotIndex + 1, right);
+  }
+  return array;
 }
 
 function pivot (array, start = 0, end = array.length-1) {
