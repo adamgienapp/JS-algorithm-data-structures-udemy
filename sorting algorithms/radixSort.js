@@ -11,11 +11,7 @@ function radixSort (array) {
       let idx = getDigit(num, j);
       buckets[idx].push(num);
     }
-    let newArray = [];
-    for (let idx in buckets) {
-      newArray = newArray.concat(buckets[idx]);
-    }
-    array = newArray.slice();
+    array = [].concat(...buckets);
   }
 
   return array;
