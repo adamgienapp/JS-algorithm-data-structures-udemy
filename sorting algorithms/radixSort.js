@@ -17,6 +17,6 @@ function radixSort (array, digit = 0) {
 }
 
 function getDigit(num, place) {
-  let div = num / (10 ** (place + 1));
-  return Math.floor((div % 1) * 10);
+  let div = Math.abs(num) / (10 ** place);
+  return Math.floor(div % 10);
 }
