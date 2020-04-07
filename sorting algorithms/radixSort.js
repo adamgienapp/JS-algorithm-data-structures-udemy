@@ -1,22 +1,32 @@
-function radixSort (array, digit = 0) {
-  const buckets = [[],[],[],[],[],[],[],[],[]];
+function radixSort (array) {
+  
+  let maxDigits = maxDigitCount(array[0]);
+  for (let i = 1; i < array.length; i++) {
+    maxDigits = Math.max(maxDigits, maxDigitCount(array[i]));
+  }
 
-  for (let num of array) {
-    let idx = getDigit(num, digit);
-    buckets[idx].push(num);
-  }
-  if (buckets[0].length === array.length) {
-    return buckets[0];
-  } else {
-    let newArray = [];
-    for (let i in buckets) {
-      newArray = newArray.concat(buckets[i]);
+  for (let j = 0; j < maxDigits; j++) {
+    let buckets = Array.from({length: 10}, () => []);
+    for (let num of array) {
+      let idx = getDigit(num, j);
+      buckets[idx].push(num);
     }
-    return radixSort(newArray, digit + 1);
+    let newArray = [];
+    for (let idx in buckets) {
+      newArray = newArray.concat(buckets[idx]);
+    }
+    array = newArray.slice();
   }
+
+  return array;
 }
 
 function getDigit(num, place) {
   let div = Math.abs(num) / (10 ** place);
   return Math.floor(div % 10);
+}
+
+function maxDigitCount(num) {
+  if (num === 0) return 1;
+  else return Math.floor(Math.log10(Math.abs(num)) + 1);
 }
