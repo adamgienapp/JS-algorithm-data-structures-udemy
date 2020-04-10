@@ -126,12 +126,12 @@ class SinglyLinkedList {
 
   reverse() {
     var current = this.head;
-    var temp = null;
+    var previous = null;
     while(current) {
-      var previous = current;
-      current = current.next;
-      previous.next = temp;
-      temp = previous;
+      var next = current.next;
+      current.next = previous;
+      previous = current;
+      current = next;
     }
     var tempTail = this.tail;
     this.tail = this.head;
