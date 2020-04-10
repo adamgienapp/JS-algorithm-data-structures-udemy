@@ -73,8 +73,8 @@ class SinglyLinkedList {
   }
 
   get(idx) {
-    if (idx > this.length - 1) {
-      return undefined;
+    if (idx < 0 || idx > this.length - 1) {
+      return null;
     }
     var counter = 0;
     var current = this.head;
@@ -83,5 +83,59 @@ class SinglyLinkedList {
       counter++;
     }
     return current;
+  }
+
+  set(idx, val) {
+    var node = this.get(idx);
+    if (node) {
+      node.val = val;
+      return true;
+    }
+    return false;
+  }
+
+  insert(idx, val) {
+    if (idx < 0 || idx > this.length) return false;
+    if (idx === 0) {
+      this.unshift(val);
+      return true;
+    }
+    if (idx === this.length) {
+      this.push(val);
+      return true;
+    }
+    var newNode = new Node(val);
+    var nodeBefore = this.get(idx - 1);
+    var nodeAfter = nodeBefore.next;
+    nodeBefore.next = newNode;
+    newNode.next = nodeAfter;
+    this.length++;
+    return true;
+  }
+
+  remove(idx) {
+    if (idx < 0 || idx >= this.length) return false;
+    if (idx === 0) return this.shift();
+    if (idx === this.length - 1) return this.pop();
+    var nodeBefore = this.get(idx - 1);
+    var removedNode = nodeBefore.next;
+    nodeBefore.next = removedNode.next;
+    this.length--;
+    return removedNode;
+  }
+
+  reverse() {
+    var current = this.head;
+    var temp = null;
+    while(current) {
+      var previous = current;
+      current = current.next;
+      previous.next = temp;
+      temp = previous;
+    }
+    var tempTail = this.tail;
+    this.tail = this.head;
+    this.head = tempTail;
+    return this;
   }
 }
