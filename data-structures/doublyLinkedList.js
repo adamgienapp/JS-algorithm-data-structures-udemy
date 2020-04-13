@@ -80,22 +80,28 @@ class DoublyLinkedList {
   get(idx) {
     if (idx < 0 || idx >= this.length) return undefined;
     var current;
-    if (idx > this.length / 2) {
-      let counter = this.length - 1;
-      current = this.tail;
-      while (counter > idx) {
-        current = current.prev;
-        counter--;
-      }
-      return current;
-    } else {
+    if (idx < this.length / 2) {
       let counter = 0;
       current = this.head;
       while (counter < idx) {
         current = current.next;
         counter++;
       }
-      return current;
+    } else {
+      let counter = this.length - 1;
+      current = this.tail;
+      while (counter > idx) {
+        current = current.prev;
+        counter--;
+      }
     }
+    return current;
+  }
+
+  set(idx, val) {
+    if (idx < 0 || idx >= this.length) return false;
+    var node = this.get(idx);
+    node.val = val;
+    return true;
   }
 }
