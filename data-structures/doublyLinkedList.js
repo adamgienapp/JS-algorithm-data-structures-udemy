@@ -99,9 +99,27 @@ class DoublyLinkedList {
   }
 
   set(idx, val) {
-    if (idx < 0 || idx >= this.length) return false;
     var node = this.get(idx);
-    node.val = val;
-    return true;
+    if (node !== undefined) {
+      node.val = val;
+      return true;
+    }
+    return false;
+  }
+
+  insert(idx, val) {
+    if (idx === 0) return this.unshift(val);
+    if (idx === this.length) return this.push(val);
+    var current = this.get(idx);
+    if (!current) {
+      console.log('Invalid index!');
+      return undefined;
+    }
+    var newNode = new Node(val);
+    newNode.prev = current.prev;
+    newNode.next = current;
+    newNode.prev.next = newNode;
+    current.prev = newNode;
+    return this;
   }
 }
