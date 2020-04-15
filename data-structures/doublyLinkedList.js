@@ -140,4 +140,20 @@ class DoublyLinkedList {
     this.length--;
     return current;
   }
+
+  reverse(){
+    var current = this.head;
+    var counter = 0;
+    while (counter < this.length) {
+        var temp = current.next;
+        current.next = current.prev;
+        current.prev = temp;
+        current = temp;
+        counter++;
+    }
+    var oldTail = this.tail;
+    this.tail = this.head;
+    this.head = oldTail;
+    return this;
+  }
 }
