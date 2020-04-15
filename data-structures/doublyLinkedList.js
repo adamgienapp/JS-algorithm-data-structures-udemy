@@ -123,4 +123,21 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  remove(idx) {
+    if (idx === 0) return this.shift();
+    if (idx === this.length - 1) return this.pop();
+    
+    var current = this.get(idx);
+    if (!current) {
+      console.log('Invalid index!');
+      return undefined;
+    }
+
+    var beforeNode = current.prev, afterNode = current.next;
+    beforeNode.next = afterNode, afterNode.prev = beforeNode;
+    current.prev = null, current.next = null;
+    this.length--;
+    return current;
+  }
 }
