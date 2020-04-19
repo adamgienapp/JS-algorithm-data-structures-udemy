@@ -18,6 +18,7 @@ class BinarySearchTree {
       var parentFound = false;
       var current = this.root;
       while (!parentFound) {
+        if (val === current.val) return undefined;
         if (val > current.val) {
           if (current.children[1]) {
             current = current.children[1];
@@ -36,5 +37,31 @@ class BinarySearchTree {
         }
       }
     }
+    return this;
+  }
+
+  find(val) {
+    var valFound = false;
+    var current = this.root;
+    while (!valFound) {
+      if (current.val === val) {
+        valFound = true;
+      }
+      if (val > current.val) {
+        if (current.children[1]) {
+          current = current.children[1];
+        } else {
+          break;
+        }
+      }
+      if (val < current.val) {
+        if (current.children[0]) {
+          current = current.children[0];
+        } else {
+          break;
+        }
+      }
+    }
+    return valFound;
   }
 }
