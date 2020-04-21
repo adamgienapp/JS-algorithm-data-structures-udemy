@@ -64,4 +64,21 @@ class BinarySearchTree {
     }
     return valFound;
   }
+
+  breadthFirstSearch() {
+    var visited = [];
+    var queue = [this.root];
+    
+    while (queue.length) {
+      queue[0].children.forEach( item => {
+        if (item) {
+          queue.push(item);
+        }
+      });
+      visited.push(queue[0].val);
+      queue.shift();
+    }
+
+    return visited;
+  }
 }
