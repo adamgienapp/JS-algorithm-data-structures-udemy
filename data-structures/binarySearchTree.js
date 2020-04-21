@@ -81,4 +81,24 @@ class BinarySearchTree {
 
     return visited;
   }
+
+  depthFirstPreOrder() {
+    var visited = [];
+    var queue = [this.root];
+    var node;
+    
+    while (queue.length) {
+      var nodeChildren = []
+      node = queue.shift();
+      node.children.forEach( item => {
+        if (item) {
+          nodeChildren.push(item);
+        }
+      });
+      visited.push(node.val);
+      queue = nodeChildren.concat(queue);
+    }
+
+    return visited;
+  }
 }
