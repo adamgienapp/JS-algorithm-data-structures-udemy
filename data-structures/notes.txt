@@ -1,0 +1,28 @@
+Data structure Big O:
+
+Singly Linked List
+- insertion O(1)
+- removal O(n) or O(1) if removing first node
+- search O(n)
+- access O(n)
+
+Doubly Linked List
+- insertion O(1)
+- removal O(1)
+- search O(n), technically O(n/2) but that simplifies to O(n), faster than SLL
+- access O(n), same as searching
+
+Stack
+- insertion O(1)
+- removal O(1)
+- search / access O(n)
+  - you woudn't use a stack if searching or access are important
+
+Queue
+- insertion O(1)
+- removal O(1)
+- search / access
+
+Binary Search Tree
+- insertion O(log n)
+- search O (log n)
