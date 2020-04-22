@@ -82,7 +82,7 @@ class BinarySearchTree {
     return visited;
   }
 
-  depthFirstPreOrder() {
+  DFSPreOrder() {
     var visited = [];
     var queue = [this.root];
     var node;
@@ -100,5 +100,41 @@ class BinarySearchTree {
     }
 
     return visited;
+  }
+
+  DFSPostOrder() {
+    var visited = [];
+    var queue = [this.root];
+    var node;
+
+    while (queue.length) {
+      var nodeChildren = []
+      node = queue.shift();
+      node.children.forEach( item => {
+        if (item) {
+          nodeChildren.unshift(item);
+        }
+      });
+      visited.unshift(node.val);
+      queue = nodeChildren.concat(queue);
+    }
+    return visited;
+  }
+
+  DFSInOrder() {
+    var data = [];
+
+    function inOrderTraverse(node) {
+      if (node.children[0]) {
+        inOrderTraverse(node.children[0])
+      }
+      data.push(node.val);
+      if (node.children[1]) {
+        inOrderTraverse(node.children[1])
+      }
+    }
+
+    inOrderTraverse(this.root);
+    return data;
   }
 }
