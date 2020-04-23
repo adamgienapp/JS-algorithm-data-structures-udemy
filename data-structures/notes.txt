@@ -26,3 +26,24 @@ Queue
 Binary Search Tree
 - insertion O(log n)
 - search O (log n)
+
+
+
+Tree traversal applications:
+
+Breadth first search:
+- on a taller tree (Ex. tree is as uneven as possible), BFS will take up less space
+  (i.e. queue length will be minimized during algorithm)
+
+Depth first search:
+- on a wider tree (Ex. tree is as even as possible), DFS will take up less space
+  (i.e. queue length will be minimized during algorithm)
+
+- Pre order:
+  - export a tree structure so it can be easily reproduced
+    (if you re-create it by iterating through the pre order output, you get the same tree back)
+- Post order:
+  - used to delete the tree: if you removed nodes in order of the postorder output array,
+    you would be deleting the tree node by node
+- In order:
+  - if you want them back in numerical order, duh
