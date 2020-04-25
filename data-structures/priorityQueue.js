@@ -16,7 +16,7 @@ class PriorityQueue {
     this.storage = [];
   }
 
-  insert(val, priority = 0) {
+  enqueue(val, priority = 0) {
     let newNode = new Node(val, priority);
     this.storage.push(newNode);
     let index = this.storage.length - 1;
@@ -24,7 +24,7 @@ class PriorityQueue {
 
     while (index > 0 && validating) {
       let parentIndex = Math.floor((index - 1) / 2);
-      if (this.storage[index].priority > this.storage[parentIndex].priority) {
+      if (this.storage[index].priority < this.storage[parentIndex].priority) {
         [this.storage[parentIndex], this.storage[index]] = [this.storage[index], this.storage[parentIndex]];
         index = parentIndex;
       } else {
@@ -40,25 +40,25 @@ class PriorityQueue {
       return this.storage.pop();
     }
 
-    let max = this.storage[0];
+    let next = this.storage[0];
     this.storage[0] = this.storage.pop();
     let index = 0;
 
     while( 2 * index + 1 < this.storage.length) {
       if (2 * index + 2 >= this.storage.length) {
-        if (this.storage[2 * index + 1].priority > this.storage[index].priority) {
+        if (this.storage[2 * index + 1].priority < this.storage[index].priority) {
           [this.storage[index], this.storage[2 * index + 1]] = [this.storage[2 * index + 1], this.storage[index]];
           index = 2 * index + 1;
         } else {
           break;
         }
       } else {
-        let switchIdx = this.storage[2 * index + 1].priority > this.storage[2 * index + 2].priority ? 2 * index + 1 : 2 * index + 2;
+        let switchIdx = this.storage[2 * index + 1].priority < this.storage[2 * index + 2].priority ? 2 * index + 1 : 2 * index + 2;
         [this.storage[index], this.storage[switchIdx]] = [this.storage[switchIdx], this.storage[index]];
         index = switchIdx;
       }
     }
 
-    return max;
+    return next;
   }
 }
