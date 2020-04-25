@@ -12,11 +12,11 @@ class MaxBinaryHeap {
 
   insert(val) {
     this.storage.push(val);
-    var index = this.storage.length - 1;
-    var validating = true;
+    let index = this.storage.length - 1;
+    let validating = true;
 
     while (index > 0 && validating) {
-      var parentIndex = Math.floor((index - 1) / 2);
+      let parentIndex = Math.floor((index - 1) / 2);
       if (this.storage[index] > this.storage[parentIndex]) {
         [this.storage[parentIndex], this.storage[index]] = [this.storage[index], this.storage[parentIndex]];
         index = parentIndex;
@@ -24,5 +24,21 @@ class MaxBinaryHeap {
         validating = false;
       }
     }
+    
+    return this.storage;
+  }
+
+  extractMax() {
+    let max = this.storage[0];
+    this.storage[0] = this.storage.pop();
+    let index = 0;
+
+    while( this.storage[2*index + 1]) {
+      let switchIdx = this.storage[2 * index + 1] > this.storage[2 * index + 2] ? 2 * index + 1 : 2 * index + 2;
+      [this.storage[index], this.storage[switchIdx]] = [this.storage[switchIdx], this.storage[index]];
+      index = switchIdx;
+    }
+
+    return max;
   }
 }
