@@ -27,8 +27,12 @@ Binary Search Tree
 - insertion O(log n)
 - search O (log n)
 
-Binary heap
+Binary Heap
 - insert/removal O(log n)
+
+Hash Table
+- 
+
 
 
 Tree traversal applications:
