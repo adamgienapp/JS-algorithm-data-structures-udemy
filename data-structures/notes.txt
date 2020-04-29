@@ -31,8 +31,9 @@ Binary Heap
 - insert/removal O(log n)
 
 Hash Table
-- 
-
+- insertion O(1): on average (w/ even distribution), unless rebalancing
+- removal O(1): on average (w/ even distribution), unless rebalancing
+- access O(1): on average (w/ even distribution)
 
 
 Tree traversal applications:
