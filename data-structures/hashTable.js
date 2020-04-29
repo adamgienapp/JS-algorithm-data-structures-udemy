@@ -36,10 +36,36 @@ class HashTable {
     if (bucket) {
       for(let tuple of bucket) {
         if (tuple[0] === key) {
-          return tuple;
+          return tuple[1];
         }
       }
     }
     return undefined;
+  }
+
+  keys() {
+    let keys = [];
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let tuple of this.keyMap[i]) {
+          keys.push(tuple[0]);
+        }
+      }
+    }
+    return keys;
+  }
+
+  values() {
+    let values = {};
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let tuple of this.keyMap[i]) {
+          if (!values[tuple[1]]) {
+            values[tuple[1]] = 1;
+          }
+        }
+      }
+    }
+    return Object.keys(values);
   }
 }
