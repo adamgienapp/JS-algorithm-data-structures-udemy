@@ -44,10 +44,10 @@ class Graph {
     if (!this.adjacencyList[vertex]) {
       return 'Invalid vertex';
     }
-    const oldEdges = this.adjacencyList[vertex];
-    oldEdges.forEach((edge) => {
-      this.adjacencyList[edge] = this.adjacencyList[edge].filter(v => v !== vertex);
-    });
+    while (this.adjacencyList[vertex].length) {
+      const adjacentVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, adjacentVertex);
+    }
     delete this.adjacencyList[vertex];
     return 'Vertex removed';
   }
