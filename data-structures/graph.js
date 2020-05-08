@@ -51,4 +51,27 @@ class Graph {
     delete this.adjacencyList[vertex];
     return 'Vertex removed';
   }
+
+  depthFirstRecursive(vertex) {
+    const visited = {};
+    let list = [];
+
+    function DFS(v) {
+      if (!v) return;
+      
+      visited[v] = true;
+      list.push(v);
+
+      if (this.adjacencyList[v].length) {
+        this.adjacencyList[v].forEach((edge) => {
+          if (!visited[edge]) {
+            DFS(edge);
+          }
+        });
+      }
+    }
+    DFS = DFS.bind(this);
+    DFS(vertex);
+    return list;
+  }
 }
