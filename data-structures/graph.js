@@ -58,7 +58,7 @@ class Graph {
 
     function DFS(v) {
       if (!v) return;
-      
+
       visited[v] = true;
       list.push(v);
 
@@ -73,5 +73,20 @@ class Graph {
     DFS = DFS.bind(this);
     DFS(vertex);
     return list;
+  }
+
+  depthFirstIterative(start) {
+    let result = {};
+    let stack = [start];
+
+    while(stack.length) {
+      let vertex = stack.pop();
+      if (!result[vertex]) {
+        result[vertex] = true;
+        this.adjacencyList[vertex].forEach((edge) => stack.push(edge));
+      }
+    }
+
+    return Object.keys(result);
   }
 }
