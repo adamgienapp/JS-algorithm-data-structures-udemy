@@ -89,4 +89,19 @@ class Graph {
 
     return Object.keys(result);
   }
+
+  breadthFirstIterative(start) {
+    let result = {};
+    let stack = [start];
+
+    while(stack.length) {
+      let vertex = stack.pop();
+      if (!result[vertex]) {
+        result[vertex] = true;
+        this.adjacencyList[vertex].forEach((edge) => stack.unshift(edge));
+      }
+    }
+
+    return Object.keys(result);
+  }
 }
