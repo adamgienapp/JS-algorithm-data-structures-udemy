@@ -21,7 +21,7 @@ class WeightedGraph {
     const distances = {};
     const queue = new PriorityQueue();
     const previous = {};
-    for(var key in this.adjacencyList) {
+    for(let key in this.adjacencyList) {
       if (key === start) {
         distances[key] = 0;
         queue.enqueue(key, 0);
@@ -31,13 +31,29 @@ class WeightedGraph {
       }
       previous[key] = null;
     }
-    
-//     while (queue.storage.length) {
-//       let vertex = queue.dequeue().val;
-//       if (vertex === end) {
-//         return;
-//       }
-//       this.adjacencyList[vertex].forEach((v) => v)
-//     }
+    let vertex;
+    while (queue.storage.length) {
+      vertex = queue.dequeue().val;
+      if (vertex === end) {
+        //build path
+        const path = [end];
+        let x = end;
+        while(previous[x]) {
+         path.unshift(previous[x]);
+         x = previous[x];
+        }
+        return path;
+      }
+      if (vertex || distances[vertex] !== Infinity) {
+        this.adjacencyList[vertex].forEach((v) => {
+          let current = distances[vertex] + v.weight;
+          if (current < distances[v.node]) {
+            distances[v.node] = current;
+            previous[v.node] = vertex;
+            queue.enqueue(v.node, current);
+          }
+        });
+      }
+    }
   }
 }
