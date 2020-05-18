@@ -5,7 +5,7 @@ function fibRecursive(n) {
 
 
 function fibDynamic(n) {
-  const fib = [1, 1];
+  const fib = [0, 1, 1];
 
   function fibFinder(n) {
     if (fib[n]) return fib[n];
