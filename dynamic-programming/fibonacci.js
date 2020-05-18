@@ -3,7 +3,7 @@ function fibRecursive(n) {
   return fibRecursive(n-1) + fibRecursive(n-2);
 }
 
-
+// Memoized (working top -> down)
 function fibDynamic(n) {
   const fib = [0, 1, 1];
 
@@ -16,4 +16,14 @@ function fibDynamic(n) {
   }
 
   return fibFinder(n);
+}
+
+// Tabulated (working bottom -> up)
+function fibTabulated(n) {
+  if (n <= 2) return 1;
+  const fibNums = [0, 1, 1];
+  for (let i = 3; i <= n; i++) {
+    fibNums[i] = fibNums[i - 1] + fibNums[i - 2];
+  }
+  return fibNums[n];
 }
